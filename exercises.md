@@ -220,9 +220,12 @@ python domain_assistant.py
 python evaluate_answers.py
 ```
 
-**Run metadata:** provider `gemini`, model `gemini-3.5-flash-lite`, retriever
-BM25 `top_k=5`. Giảng viên đã chấp thuận thay OpenAI generator bằng Gemini;
-retrieval, prompt, golden dataset và evaluation core được giữ nguyên.
+**Ghi chú về LLM provider:** Bài nộp này sử dụng **Google Gemini thay cho
+OpenAI trong Part 3**, theo sự chấp thuận của giảng viên. Lần benchmark được
+chạy với provider `gemini`, model `gemini-3.5-flash-lite` và retriever BM25
+`top_k=5`. Gemini được gọi qua OpenAI-compatible endpoint của Google; việc đổi
+provider không thay đổi retrieval, prompt, golden dataset hoặc evaluation
+core. API key thật chỉ được lưu trong `.env` cục bộ và không được commit.
 
 Copy bảng terminal vào đây hoặc điền từ `artifacts/benchmark_results.json`.
 

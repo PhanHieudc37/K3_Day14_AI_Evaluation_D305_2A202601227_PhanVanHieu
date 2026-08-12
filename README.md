@@ -16,17 +16,34 @@ Hướng dẫn thao tác đầy đủ nằm trong [`guide_lab.md`](guide_lab.md)
 
 ## Yêu cầu & Quick Start
 
-**Yêu cầu:** Python 3.11 trở lên. Cần **OpenAI API key** để chạy `domain_assistant.py`
-(Part 3 — sinh 20 actual answers từ RAG thật); phần code core (`template.py`, Part 1–2)
-không cần API key.
+**Yêu cầu:** Python 3.11 trở lên. Cần API key của provider đã chọn để chạy
+`domain_assistant.py` (Part 3 — sinh 20 actual answers từ RAG thật); phần code
+core (`template.py`, Part 1–2) không cần API key.
 
 ```bash
 python --version                        # xác nhận 3.11+
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 pytest tests/ -v                         # baseline: 42 tests collected, 42 failed
-cp .env.example .env                     # rồi điền OPENAI_API_KEY (chỉ cần cho Part 3)
+cp .env.example .env                     # rồi cấu hình provider/API key cho Part 3
 ```
+
+### LLM provider sử dụng trong bài nộp
+
+Bài nộp này sử dụng **Google Gemini thay cho OpenAI trong Part 3**, theo sự
+cho phép của giảng viên. Gemini được gọi qua OpenAI-compatible endpoint của
+Google nên không cần thêm SDK `google-genai`. Cấu hình mẫu:
+
+```env
+LLM_PROVIDER=gemini
+GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_MODEL=gemini-3.5-flash-lite
+```
+
+API key thật chỉ được lưu trong file `.env` cục bộ và **không được commit**.
+Metadata về provider/model đã dùng khi benchmark được lưu trong
+`artifacts/actual_answers.json`. Evaluation core và toàn bộ unit tests không
+phụ thuộc vào API bên ngoài.
 
 Chi tiết đầy đủ theo hệ điều hành, xử lý lỗi thường gặp: xem [`guide_lab.md`](guide_lab.md) Mục 2 và Mục 15.
 
